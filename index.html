@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAMZAH N CO | The Big Family</title>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Great+Vibes&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --neon-pink: #ff006e;
+            --neon-purple: #8338ec;
+            --neon-cyan: #00f5d4;
+            --neon-orange: #ff9f1c;
+            --neon-yellow: #fee440;
+            --dark-bg: #0a0a12;
+            --card-bg: rgba(20, 20, 35, 0.7);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--dark-bg);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+            color: white;
+        }
+
+        .bg-grid {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: 
+                linear-gradient(rgba(131, 56, 236, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(131, 56, 236, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: 0;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            opacity: 0.25;
+            z-index: 0;
+            animation: blobFloat 15s ease-in-out infinite;
+        }
+        .blob-1 { width: 600px; height: 600px; background: var(--neon-pink); top: -200px; left: -200px; }
+        .blob-2 { width: 500px; height: 500px; background: var(--neon-purple); bottom: -200px; right: -200px; animation-delay: -5s; }
+        .blob-3 { width: 400px; height: 400px; background: var(--neon-cyan); top: 50%; left: 30%; animation-delay: -10s; }
+        .blob-4 { width: 350px; height: 350px; background: var(--neon-orange); top: 20%; right: 10%; animation-delay: -7s; }
+
+        @keyframes blobFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(40px, -40px) scale(1.1); }
+            66% { transform: translate(-30px, 30px) scale(0.95); }
+        }
+
+        .back-btn {
+            position: fixed;
+            top: 25px;
+            left: 25px;
+            z-index: 100;
+            background: rgba(20, 20, 35, 0.9);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            font-size: 20px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .back-btn:hover {
+            transform: scale(1.1);
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+            border-color: transparent;
+            box-shadow: 0 8px 30px rgba(255, 0, 110, 0.4);
+        }
+
+        .footer {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 40px 20px 60px;
+            color: rgba(255,255,255,0.3);
+            font-size: 13px;
+        }
+
+        .footer-quote {
+            font-style: italic;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: rgba(255,255,255,0.5);
+        }
+
+        .footer-emoji {
+            display: inline-block;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: var(--dark-bg); }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(180deg, var(--neon-purple), var(--neon-pink));
+            border-radius: 4px;
+        }
+
+        @media (max-width: 768px) {
+            .back-btn { top: 15px; left: 15px; width: 45px; height: 45px; }
+        }
+
+
+        .hero {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 80px 20px 50px;
+        }
+
+        .family-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+            display: inline-block;
+            animation: iconFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes iconFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .family-name {
+            font-family: 'Great Vibes', cursive;
+            font-size: 72px;
+            background: linear-gradient(135deg, var(--neon-pink), var(--neon-orange), var(--neon-cyan));
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: gradientShift 5s ease infinite;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .family-tagline {
+            color: rgba(255,255,255,0.5);
+            font-size: 16px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .family-stats {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.08);
+            padding: 15px 25px;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.08);
+            border-color: var(--neon-purple);
+            box-shadow: 0 10px 30px rgba(131, 56, 236, 0.2);
+        }
+
+        .stat-number {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, var(--neon-cyan), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 11px;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 3px;
+        }
+
+        .siblings-section {
+            position: relative;
+            z-index: 2;
+            padding: 40px 20px 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: var(--neon-cyan);
+            margin-bottom: 40px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .section-title::before,
+        .section-title::after {
+            content: '';
+            width: 60px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan));
+        }
+
+        .section-title::after {
+            background: linear-gradient(90deg, var(--neon-cyan), transparent);
+        }
+
+        .siblings-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .family-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            animation: cardEntry 0.8s ease forwards;
+            opacity: 0;
+            transform: translateY(30px);
+            text-decoration: none;
+            color: white;
+            display: block;
+        }
+
+        .family-card:nth-child(1) { animation-delay: 0.1s; }
+        .family-card:nth-child(2) { animation-delay: 0.2s; }
+        .family-card:nth-child(3) { animation-delay: 0.3s; }
+        .family-card:nth-child(4) { animation-delay: 0.4s; }
+        .family-card:nth-child(5) { animation-delay: 0.5s; }
+        .family-card:nth-child(6) { animation-delay: 0.6s; }
+        .family-card:nth-child(7) { animation-delay: 0.7s; }
+
+        @keyframes cardEntry {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .family-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            border-color: rgba(131, 56, 236, 0.4);
+            box-shadow: 0 30px 70px rgba(0,0,0,0.5), 0 0 50px rgba(131, 56, 236, 0.15);
+        }
+
+        .family-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-pink), var(--neon-purple), var(--neon-cyan));
+            background-size: 200% 100%;
+            animation: borderGlow 3s linear infinite;
+        }
+
+        @keyframes borderGlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .family-card-inner {
+            padding: 30px 25px;
+            display: flex;
+            align-items: center;
+            gap: 18px;
+        }
+
+        .family-avatar {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-purple), var(--neon-pink));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            flex-shrink: 0;
+            transition: all 0.4s ease;
+            box-shadow: 0 5px 20px rgba(131, 56, 236, 0.3);
+        }
+
+        .family-card:hover .family-avatar {
+            transform: scale(1.2) rotate(15deg);
+            box-shadow: 0 10px 35px rgba(255, 0, 110, 0.5);
+        }
+
+        .family-info {
+            flex: 1;
+        }
+
+        .family-info-name {
+            font-size: 20px;
+            font-weight: 700;
+            color: rgba(255,255,255,0.95);
+            margin-bottom: 5px;
+            transition: color 0.3s;
+        }
+
+        .family-card:hover .family-info-name {
+            color: var(--neon-cyan);
+        }
+
+        .family-info-role {
+            font-size: 12px;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .family-info-children {
+            font-size: 13px;
+            color: rgba(255,255,255,0.5);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .family-info-children span {
+            color: var(--neon-yellow);
+            font-weight: 600;
+        }
+
+        .family-arrow {
+            font-size: 20px;
+            color: rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .family-card:hover .family-arrow {
+            color: var(--neon-cyan);
+            transform: translateX(5px);
+        }
+
+        .click-hint {
+            text-align: center;
+            color: rgba(255,255,255,0.3);
+            font-size: 13px;
+            margin-top: 15px;
+            letter-spacing: 1px;
+        }
+
+        @media (max-width: 768px) {
+            .family-name { font-size: 48px; }
+            .siblings-grid { grid-template-columns: 1fr; }
+            .family-stats { gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="bg-grid"></div>
+<div class="blob blob-1"></div>
+<div class="blob blob-2"></div>
+<div class="blob blob-3"></div>
+<div class="blob blob-4"></div>
+
+<div class="hero">
+    <div class="family-icon">👨‍👩‍👧‍👦</div>
+    <h1 class="family-name">HAMZAH N CO</h1>
+    <p class="family-tagline">The Big Family</p>
+
+    <div class="family-stats">
+        <div class="stat-item" onclick="createConfetti(event)">
+            <div class="stat-number">7</div>
+            <div class="stat-label">Adik Beradik</div>
+        </div>
+        <div class="stat-item" onclick="createConfetti(event)">
+            <div class="stat-number">23</div>
+            <div class="stat-label">Cucu/Cicit</div>
+        </div>
+        <div class="stat-item" onclick="createConfetti(event)">
+            <div class="stat-number">1</div>
+            <div class="stat-label">Keluarga</div>
+        </div>
+    </div>
+</div>
+
+<div class="siblings-section">
+    <div class="section-title">Pilih Family</div>
+    <p class="click-hint">👆 Klik card untuk tengok anak-anak</p>
+
+    <div class="siblings-grid">
+        
+        <a href="family1.html" target="_blank" class="family-card" onclick="createConfetti(event)">
+            <div class="family-card-inner">
+                <div class="family-avatar">👤</div>
+                <div class="family-info">
+                    <div class="family-info-name">NORIZAN</div>
+                    <div class="family-info-role">Anak Sulung</div>
+                    <div class="family-info-children">👶 <span>1 orang anak</span></div>
+                </div>
+                <div class="family-arrow">→</div>
+            </div>
+        </a>
+
+        <a href="family2.html" target="_blank" class="family-card" onclick="createConfetti(event)">
+            <div class="family-card-inner">
+                <div class="family-avatar">👤</div>
+                <div class="family-info">
+                    <div class="family-info-name">SAZALI</div>
+                    <div class="family-info-role">Anak Ke-2</div>
+                    <div class="family-info-children">👶 <span>4 orang anak</span></div>
+                </div>
+                <div class="family-arrow">→</div>
+            </div>
+        </a>
+
+        <a href="family3.html" target="_blank" class="family-card" onclick="createConfetti(event)">
+            <div class="family-card-inner">
+                <div class="family-avatar">👤</div>
+                <div class="family-info">
+                    <div class="family-info-name">SHAMSUL KAMAR</div>
+                    <div class="family-info-role">Anak Ke-3</div>
+                    <div class="family-info-children">👶 <span>4 orang anak</span></div>
+                </div>
+                <div class="family-arrow">→</div>
+            </div>
+        </a>
+
+        <a href="family4.html" target="_blank" class="family-card" onclick="createConfetti(event)">
+            <div class="family-card-inner">
+                <div class="family-avatar">👤</div>
+                <div class="family-info">
+                    <div class="family-info-name">SHAMSUL ANUAR</div>
+                    <div class="family-info-role">Anak Ke-4</div>
+                    <div class="family-info-children">👶 <span>3 orang anak</span></div>
+                </div>
+                <div class="family-arrow">→</div>
+            </div>
+        </a>
+
+        <a href="family5.html" target="_blank" class="family-card" onclick="createConfetti(event)">
+            <div class="family-card-inner">
+                <div class="family-avatar">👤</div>
+                <div class="family-info">
+                    <div class="family-info-name">SHAMSUL SHAHRIL</div>
+                    <div class="family-info-role">Anak Ke-5</div>
+                    <div class="family-info-children">👶 <span>5 orang anak</span></div>
+                </div>
+                <div class="family-arrow">→</div>
+            </div>
+        </a>
+
+        <a href="family6.html" target="_blank" class="family-card" onclick="createConfetti(event)">
+            <div class="family-card-inner">
+                <div class="family-avatar">👤</div>
+                <div class="family-info">
+                    <div class="family-info-name">NORHANIRA</div>
+                    <div class="family-info-role">Anak Ke-6</div>
+                    <div class="family-info-children">👶 <span>3 orang anak</span></div>
+                </div>
+                <div class="family-arrow">→</div>
+            </div>
+        </a>
+
+        <a href="family7.html" target="_blank" class="family-card" onclick="createConfetti(event)">
+            <div class="family-card-inner">
+                <div class="family-avatar">👤</div>
+                <div class="family-info">
+                    <div class="family-info-name">FITRI</div>
+                    <div class="family-info-role">Anak Bongsu</div>
+                    <div class="family-info-children">👶 <span>3 orang anak</span></div>
+                </div>
+                <div class="family-arrow">→</div>
+            </div>
+        </a>
+
+    </div>
+</div>
+
+<div class="footer">
+    <p class="footer-quote">"Keluarga adalah harta yang paling berharga."</p>
+    <p>
+        <span class="footer-emoji">❤️</span> 
+        HAMZAH N CO — Sungai Petani, Kedah 
+        <span class="footer-emoji">❤️</span>
+    </p>
+</div>
+
+<script>
+    function createConfetti(e) {
+        const colors = ['#ff006e', '#8338ec', '#00f5d4', '#ff9f1c', '#fee440', '#ffffff'];
+        for (let i = 0; i < 15; i++) {
+            const confetti = document.createElement('div');
+            confetti.style.cssText = `
+                position: fixed;
+                left: ${e.clientX}px;
+                top: ${e.clientY}px;
+                width: ${Math.random() * 8 + 4}px;
+                height: ${Math.random() * 8 + 4}px;
+                background: ${colors[Math.floor(Math.random() * colors.length)]};
+                border-radius: ${Math.random() > 0.5 ? '50%' : '2px'};
+                pointer-events: none;
+                z-index: 9999;
+                animation: confettiFall ${Math.random() * 0.5 + 1}s ease-out forwards;
+            `;
+            document.body.appendChild(confetti);
+            setTimeout(() => confetti.remove(), 1500);
+        }
+    }
+
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes confettiFall {
+            0% { transform: translate(0, 0) rotate(0deg) scale(1); opacity: 1; }
+            100% { transform: translate(${Math.random()*200-100}px, -300px) rotate(720deg) scale(0); opacity: 0; }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
+
+</body>
+</html>
